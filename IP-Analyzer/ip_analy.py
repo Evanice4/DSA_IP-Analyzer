@@ -52,3 +52,4 @@ if __name__ == "__main__":
     process_log_file('sample_01_easy.log', 3, 'sample_01_easy_result_n3.txt')
     process_log_file('sample_01_easy.log', 4, 'sample_01_easy_result_n4.txt')
     process_log_file('sample_01_easy.log', 6, 'sample_01_easy_result_n6.txt')
+    
