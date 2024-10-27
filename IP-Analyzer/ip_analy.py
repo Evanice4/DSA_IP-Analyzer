@@ -7,8 +7,23 @@ def process_log_file(log_file_path, n, output_file_path):
     # Read the log file and count requests per IP address
     with open(log_file_path, 'r') as log_file:
         for line in log_file:
-            ip_address, count = line.strip().split(',')
-            ip_counts[ip_address] += int(count)
+            # Strip whitespace and skip empty lines
+            line = line.strip()
+            if not line:
+                continue  # Skip empty lines
+
+            # Split the line and handle potential unpacking issues
+            parts = line.split(',')
+            if len(parts) != 2:
+                print(f"Warning: Line skipped due to unexpected format: {line}")
+                continue  # Skip lines that don't have exactly 2 parts
+
+            ip_address, count = parts
+            try:
+                ip_counts[ip_address] += int(count)
+            except ValueError:
+                print(f"Warning: Invalid count value for IP {ip_address}: {count}")
+                continue  # Skip lines with invalid count values
 
     # Create a max heap for the top n IP addresses
     max_heap = []
