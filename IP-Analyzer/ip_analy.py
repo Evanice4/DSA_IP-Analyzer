@@ -4,10 +4,11 @@ from collections import defaultdict
 def process_log_file(log_file_path, n, output_file_path):
     ip_counts = defaultdict(int)
 
-    # Read the log file and count requests per IP address
+    # Reads the log file line by line to count requests from each IP
     with open(log_file_path, 'r') as log_file:
         for line in log_file:
-            # Strip whitespace and skip empty lines
+            # Removes whitespace and skips  empty lines
+
             line = line.strip()
             if not line:
                 continue  # Skip empty lines
